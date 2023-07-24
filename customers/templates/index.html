@@ -3,8 +3,8 @@
 {% block content %}
     
     {% if user.is_authenticated %}
-    <table class="table-dark">
-        <thead>
+    <table class="table table-stripped table-hover table-bordered">
+        <thead class="table-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
@@ -14,28 +14,42 @@
             <th scope="col">End Date</th>
             <th scope="col">Customer Aadhaar</th>
             <th scope="col">Client type</th>
+            <th scope="col">ID</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-
-
-            </tr>
-            </tbody>
-        </table>
+          
     {% if customers %}
-        {% for customer in customers %}
-        {{customer.}}<br>
-
+                {% for customer in customers %}
+            <tr>
+                    <td><a href="{% url 'record' customer.id %}">
+                        {{customer.first_name}}
+                      {{customer.last_name}}</a></td> 
+                     <td>{{customer.email}}</td>
+                     <td>{{customer.phone}}</td>
+                     <td> {{customer.Place_Allotted}}</td>
+                     <td> {{customer.start_date}}</td>
+                     <td>{{customer.end_date}}</td>
+                     <td> {{customer.customer_Aadhaar}}</td>
+                     <td>{{customer.client_type}}</td>
+                     <td><a href="{% url 'record' customer.id %}">
+                        {{customer.id}}</a></td>
+            </tr>
+               {%  endfor %}
+    
     {% endif %}
 
+            </tbody>
+        </table>
+
+
     {% else %}
-     
-<h1>Login</h1>
-<br>
-<form method="post" action="{% url 'index' %}">
-    {% csrf_token %}
-    <form>
+
+     <div class="col-md-6 offset-md-3">
+        <h1>Login</h1>
+        <br>
+        <form method="post" action="{% url 'index' %}">
+          {% csrf_token %}
         <div class="mb-3">
           <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
           <input type="text" class="form-control" name="username"
@@ -49,10 +63,9 @@
         </div>
         <br>
         <button type="submit" class="btn btn-secondary">Login</button>
-      </form>
+  
+    </form>
 
-
-</form>
-
+{% endif %}
 
 {% endblock %}

@@ -2,22 +2,22 @@ from django.db import models
 
 # Create your models here.
 class ClientReq(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    type = models.CharField(max_length=100, null=False)
 
     def __str__(self):
-        return self.name
+        return self.type
 
 class ClientType(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    type = models.CharField(max_length=100, null=False)
     
     def __str__(self):
-        return self.name
+        return self.type
 
 class Payment(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    type = models.CharField(max_length=100, null=False)
 
     def __str__(self):
-        return self.name
+        return self.type
 
 class Cabin(models.Model):
     Cabin_Studio = models.CharField(max_length=100, null =False)
@@ -26,7 +26,7 @@ class Cabin(models.Model):
         return self.Cabin_Studio
 
 class Customer(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
+    # created_at = models.DateTimeField(auto_now_add=True, default=0)
     client_type = models.ForeignKey(ClientType, on_delete=models.CASCADE)
     client_req = models.ForeignKey(ClientReq,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=False)
@@ -45,4 +45,4 @@ class Customer(models.Model):
     customer_Aadhaar = models.CharField(max_length=50)
 
     def __str__(self):
-        return f'Customer:{self.first_name} {self.last_name}'
+        return (f"Customer:{self.first_name} {self.last_name}")
