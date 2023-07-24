@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Customer
+from .models import Customer #ClientReq, ClientType, Payment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 # Create your views here.
 def index(request):
+    customers = Customer.objects.all()
+
     # check to see if logging in
     if request.method=='POST':
         username = request.POST['username']
@@ -23,8 +25,7 @@ def index(request):
             return redirect('index')
     else:
         return render(request, 'index.html',{
-            'customer': Customer.objects.all()
-            })
+            'customers': customers})
 
 def login_user(request):
     pass

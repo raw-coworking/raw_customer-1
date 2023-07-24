@@ -2,24 +2,37 @@ from django.db import models
 
 # Create your models here.
 class ClientReq(models.Model):
-    type = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False)
+
+    def __str__(self):
+        return self.name
 
 class ClientType(models.Model):
-    type = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False)
+    
+    def __str__(self):
+        return self.name
 
 class Payment(models.Model):
-    type = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False)
+
+    def __str__(self):
+        return self.name
 
 class Cabin(models.Model):
     Cabin_Studio = models.CharField(max_length=100, null =False)
 
+    def __str__(self):
+        return self.Cabin_Studio
+
 class Customer(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     client_type = models.ForeignKey(ClientType, on_delete=models.CASCADE)
     client_req = models.ForeignKey(ClientReq,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=False)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    phone = models.IntegerField(default=0)
+    phone = models.CharField(max_length=20)
     Place_Allotted = models.ForeignKey(Cabin, on_delete=models.CASCADE)
     no_of_seats = models.IntegerField(default=0)
     start_date = models.DateField()
