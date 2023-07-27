@@ -20,7 +20,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "poll/wsgi.py"
+            "dest": "Customer_data/wsgi.py"
         }
     ]
 }
