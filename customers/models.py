@@ -27,8 +27,8 @@ class Cabin(models.Model):
 
 class Customer(models.Model):
     # created_at = models.DateTimeField(auto_now_add=True, default=0)
-    client_type = models.ForeignKey(ClientType, on_delete=models.CASCADE)
-    client_req = models.ForeignKey(ClientReq,on_delete=models.CASCADE)
+    client_Type = models.ForeignKey(ClientType, on_delete=models.CASCADE)
+    client_Req = models.ForeignKey(ClientReq,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=False)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -45,4 +45,4 @@ class Customer(models.Model):
     customer_Aadhaar = models.CharField(max_length=50)
 
     def __str__(self):
-        return (f"Customer:{self.first_name} {self.last_name}")
+        return "%s, %s, %s, %s" %(self.first_name, self.last_name, self.email, self.phone)
