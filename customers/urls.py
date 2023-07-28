@@ -13,6 +13,3 @@ urlpatterns = [
     path('add_record/', views.add_record, name='add_record'),
     path('update/<int:pk>', views.update_record, name='update_record'), 
 ]
-# add at the last
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
