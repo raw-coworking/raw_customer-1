@@ -1,0 +1,4 @@
+*.env
+customers/
+static/
+*.sqlite3
